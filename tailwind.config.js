@@ -30,7 +30,11 @@ module.exports = {
         './node_modules/flowbite/**/*.js', 
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors:{
+                customBlue:'#58a0ad',
+            }
+        },
     },
     plugins: [flowbite], 
 };
