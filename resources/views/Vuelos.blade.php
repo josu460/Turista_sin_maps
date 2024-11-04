@@ -1,69 +1,78 @@
 @extends('layouts.navbaradmi')
 @section('titulo', ' Vuelos')
-    @section('contenido')
-    <link rel="stylesheet" href="{{ asset('css/vuelos.css') }}">
+@section('contenido')
+<link rel="stylesheet" href="{{ asset('css/vuelos.css') }}">
 
-    <div class="bg-blue-500 text-white py-8 px-4">
-    <h1 class="text-2xl font-bold text-center">Vuelos a Cada Rincon del Mundo</h1>
-    </div>
+<div class="bg-blue-500 text-white py-8 px-4">
+    <h1 class="text-2xl font-bold text-center">VUELOS A CADA RINCON DEL MUNDO</h1>
+</div>
 
-<div class="bg-white p-6 rounded-lg shadow-lg mx-auto max-w-7xl mt-4">
-    <form class="grid grid-cols-1 md:grid-cols-6 gap-4">
+<div class="bg-white p-6 rounded-lg shadow-lg mx-auto max-w-7xl mt-5">
+    <form action="/enviarVuelo" method="POST" class="grid grid-cols-1 md:grid-cols-6 gap-4">
+        @csrf
         <div class="col-span-1 ">
-            <label for="trip-type" class="block mb-2 text-sm font-medium text-gray-700">Tipo de Viaje</label>
-            <select id="trip-type" class="w-full p-2.5 border border-gray-300 rounded-lg">
+            <label for="tipo_viaje" class="block mb-2 text-sm font-medium text-gray-700">Tipo de Viaje</label>
+            <select id="tipo_viaje" name="tipo_viaje" class="w-full p-2.5 border border-gray-300 rounded-lg ">
                 <option>Ida y vuelta</option>
                 <option>Solo ida</option>
             </select>
         </div>
 
         <div class="col-span-1">
-            <label for="passengers" class="block mb-2 text-sm font-medium text-gray-700">Pasajeros</label>
-            <select id="passengers" class="w-full p-2.5 border border-gray-300 rounded-lg">
-                <option>1 Pasajero</option>
-                <option>2 Pasajeros</option>
-                <option>3 Pasajeros</option>
-            </select>
+            <label for="pasajeros" class="block mb-2 text-sm font-medium text-gray-700">Pasajeros</label>
+            <input type="number" id="pasajeros" name="pasajeros" class="w-full p-2.5 border border-gray-300 rounded-lg" placeholder="Numero de pasajeros" value="{{old('pasajeros')}}">
+            <small>{{$errors->first('pasajeros')}}</small>
         </div>
 
         <div class="col-span-1">
-            <label for="class" class="block mb-2 text-sm font-medium text-gray-700">Clase</label>
-            <select id="class" class="w-full p-2.5 border border-gray-300 rounded-lg">
-                <option>Clase</option>
-                <option>Económica</option>
-                <option>Premium</option>
-                <option>Business</option>
+            <label for="clase" class="block mb-2 text-sm font-medium text-gray-700">Clase</label>
+            <select id="clase" name="clase" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                <option value="default" disabled selected>Clase</option>
+                <option value="economica">Económica</option>
+                <option value="premium">Premium</option>
+                <option value="business">Business</option>
             </select>
+            @if ($errors->has('clase'))
+            <small>{{ $errors->first('clase') }}</small>
+            @endif
         </div>
 
-        <div class="col-span-1 md:col-span-2 ">
-            <label for="fare" class="block mb-2 text-sm font-medium text-gray-700">Tarifa</label>
-            <select id="fare" class="w-full p-2.5 border border-gray-300 rounded-lg">
-                <option>Tarifa</option>
-                <option>Clásica</option>
-                <option>Flex</option>
-                <option>Superflex</option>
+        <div class="col-span-1 md:col-span-2">
+            <label for="tarifa" class="block mb-2 text-sm font-medium text-gray-700">Tarifa</label>
+            <select id="tarifa" name="tarifa" class="w-full p-2.5 border border-gray-300 rounded-lg" required>
+                <option value="default" disabled selected>Seleccione una tarifa</option>
+                <option value="clasica">Clásica</option>
+                <option value="flex">Flex</option>
+                <option value="superflex">Superflex</option>
             </select>
+            @if ($errors->has('tarifa'))
+            <small>{{ $errors->first('tarifa') }}</small>
+            @endif
         </div>
+
 
         <div class="col-span-2 ">
-            <label for="origin" class="block mb-2 text-sm font-medium text-gray-700">Desde</label>
-            <input type="text" id="origin" class="w-full p-2.5 border border-gray-300 rounded-lg" placeholder="Origen">
+            <label for="origen" class="block mb-2 text-sm font-medium text-gray-700">Desde</label>
+            <input type="text" id="origen" name="origen" class="w-full p-2.5 border border-gray-300 rounded-lg" placeholder="Origen" value="{{old('origen')}}">
+            <small>{{$errors->first('origen')}}</small>
         </div>
 
         <div class="col-span-2">
-            <label for="destination" class="block mb-2 text-sm font-medium text-gray-700">A</label>
-            <input type="text" id="destination" class="w-full p-2.5 border border-gray-300 rounded-lg" value="Querétaro QRO" readonly>
+            <label for="destino" class="block mb-2 text-sm font-medium text-gray-700">A</label>
+            <input type="text" id="destino" name="destino" class="w-full p-2.5 border border-gray-300 rounded-lg" placeholder="Destino " value="{{old('destino')}}">
+            <small>{{$errors->first('destino')}}</small>
         </div>
 
         <div class="col-span-1">
-            <label for="departure-date" class="block mb-2 text-sm font-medium text-gray-700">Ida</label>
-            <input type="date" id="departure-date" class="w-full p-2.5 border border-gray-300 rounded-lg">
+            <label for="fecha_despegue" class="block mb-2 text-sm font-medium text-gray-700">Ida</label>
+            <input type="date" id="fecha_despegue" name="fecha_despegue" class="w-full p-2.5 border border-gray-300 rounded-lg">
+            <small>{{$errors->first('fecha_despegue')}}</small>
         </div>
 
         <div class="col-span-1">
-            <label for="return-date" class="block mb-2 text-sm font-medium text-gray-700">Vuelta</label>
-            <input type="date" id="return-date" class="w-full p-2.5 border border-gray-300 rounded-lg">
+            <label for="fecha_regreso" class="block mb-2 text-sm font-medium text-gray-700">Vuelta</label>
+            <input type="date" id="fecha_regreso" name="fecha_regreso" class="w-full p-2.5 border border-gray-300 rounded-lg">
+            <small>{{$errors->first('fecha_regreso')}}</small>
         </div>
 
         <div class="col-span-1 md:col-span-6">
@@ -72,12 +81,26 @@
             </button>
         </div>
     </form>
+
+    @if (session('exito'))
+    @session ('exito')
+    <script>
+        Swal.fire({
+            title: "Todo correcto ",
+            text: " {{$value}} ",
+            icon: "success"
+        });
+    </script>
+    @endsession
+    @endif
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
     <x-cardvuelos></x-cardvuelos>
     <x-cardvuelos></x-cardvuelos>
     <x-cardvuelos></x-cardvuelos>
-    
+    <x-cardvuelos></x-cardvuelos>
+    <x-cardvuelos></x-cardvuelos>
+    <x-cardvuelos></x-cardvuelos>
 </div>
-    @endsection
+@endsection
