@@ -85,11 +85,17 @@
     @if (session('exito'))
     @session ('exito')
     <script>
-        Swal.fire({
-            title: "Todo correcto ",
-            text: " {{$value}} ",
-            icon: "success"
-        });
+Swal.fire({
+  title: 'Loading...',
+  didOpen: () => {
+    Swal.showLoading(); // Muestra el spinner de carga
+  }
+});
+
+// Para cerrar la alerta después de un tiempo simulado de "carga"
+setTimeout(() => {
+  Swal.close(); // Cierra el cuadro de diálogo de carga después de 2 segundos
+}, 1500)
     </script>
     @endsession
     @endif
