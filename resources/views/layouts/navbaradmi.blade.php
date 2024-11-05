@@ -77,6 +77,7 @@
     </nav>
 
     @yield('contenido')
+    @yield('contenido1')
 
     <x-Footer> </x-Footer>
 </body>
