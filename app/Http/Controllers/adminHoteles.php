@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegistrarHotel;
-
+use App\Http\Requests\EditarU;
 class adminHoteles extends Controller
 {
     public function RegistrarHotel()
@@ -20,6 +20,38 @@ class adminHoteles extends Controller
 
         return view('home');
     }
+
+    public function ConsultarUsuario(){
+
+        return view('ConsultarUsuario');
+    }
+
+
+    Public function EditarUsuario(){
+        return view('EditarUsuario');
+    }
+
+
+    public function ActualizarUsuario(EditarU $peticion)
+    {
+
+        $validacion = $peticion->validate([ 
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'correo' => 'required|email|unique:users,email,',
+            'telefono' => 'nullable|string|max:20',
+            'password' => 'required|string|max:255|min:8',
+        ]);
+    
+        $usuario = $peticion->input('nombre');
+            
+        session()->flash('exito', 'Todo correcto: ' . $usuario . ' Usuario Actualizado');
+            
+        return redirect('EditarUsuario');
+    }
+    
+
+
     
 
     public function addHoteles(RegistrarHotel $peticion) 
