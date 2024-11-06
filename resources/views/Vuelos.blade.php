@@ -103,8 +103,4 @@
     <x-cardvuelos></x-cardvuelos>
     <x-cardvuelos></x-cardvuelos>
 </div>
-
-
-
-
 @endsection
