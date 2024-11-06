@@ -1,8 +1,8 @@
-@extends('layouts.navbaradmi')
+@extends('layouts.navbarusuario')
 
 @section('titulo', 'Bienvenido a Tu Plataforma Turística')
 
-@section('contenido1')
+@section('contenido')
 <div class="container mx-auto py-12 px-6">
 
     <div class="text-center">

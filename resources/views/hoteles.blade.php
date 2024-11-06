@@ -1,4 +1,4 @@
-@extends('layouts.navbaradmi')
+@extends('layouts.navbarusuario')
 @section('titulo', 'Hoteles')
 @section('contenido')
 
