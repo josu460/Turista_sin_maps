@@ -42,8 +42,8 @@
             <select id="tarifa" name="tarifa" class="w-full p-2.5 border border-gray-300 rounded-lg" required>
                 <option value="default" disabled selected>Seleccione una tarifa</option>
                 <option value="clasica">Clásica</option>
-                <option value="flex">Flex</option>
-                <option value="superflex">Superflex</option>
+                <option value="flex">Flexible</option>
+                <option value="superflex">Muy economica</option>
             </select>
             @if ($errors->has('tarifa'))
             <small>{{ $errors->first('tarifa') }}</small>

@@ -56,5 +56,17 @@ class VuelosController extends Controller
         return to_route('ConsultaVuelos');
     }
 
+    public function ComprarVuelo(Request $request)
+    {
+        $validacion = $request->validate([
+            'destino' => 'required',
+            'salida' => 'required',
+            'fecha_ida' => 'required',
+            'fecha_vuelta' => 'required',
+            'asientoSeleccionado' => 'required',
+        ]);
+        session()->flash('exito', 'Vuelo comprado exitosamente');
+        return to_route('ConsultaVuelos');
+    }
 
 }

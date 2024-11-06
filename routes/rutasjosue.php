@@ -27,4 +27,6 @@ Route :: post('/crearVuelo', [VuelosController::class, 'CrearVuelos'])->name('Cr
 
 Route :: post('/editarVuelo', [VuelosController::class, 'EditarVuelos'])->name('EditarVuelos');
 
+Route :: post('/comprarVuelo', [VuelosController::class, 'ComprarVuelo'])->name('ComprarVuelo');
+
 require __DIR__.'/auth.php';
