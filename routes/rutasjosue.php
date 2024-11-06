@@ -10,13 +10,21 @@ Route::get('/navbar', function () {
 
 Route::get('/ConsultaVuelos', function () {
     return view('ConsultaVuelos');
-});
+})->name('ConsultaVuelos');
 
 Route::get('/Vuelos', function () {
     return view('Vuelos');
 })->name('Vuelos');
 
+Route:: get('/HomeAdministrador', function () {
+    return view('HomeAdministrador');
+})->name('HomeAdministrador');
+
 
 Route :: post('/enviarVuelo', [VuelosController::class, 'VuelosBuscar'])->name('VuelosBuscar');
+
+Route :: post('/crearVuelo', [VuelosController::class, 'CrearVuelos'])->name('CrearVuelos');
+
+Route :: post('/editarVuelo', [VuelosController::class, 'EditarVuelos'])->name('EditarVuelos');
 
 require __DIR__.'/auth.php';

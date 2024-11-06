@@ -1,4 +1,4 @@
-@extends('layouts.navbaradmi')
+@extends('layouts.navbarusuario')
 @section('titulo', ' Vuelos')
 @section('contenido')
 <link rel="stylesheet" href="{{ asset('css/vuelos.css') }}">
