@@ -1,0 +1,12 @@
+.img-cris {
+    width: 20%;              /* Hace que la imagen ocupe el ancho completo de la tarjeta */
+    height: 30px;            /* Ajusta la altura para que mantenga la proporción */
+    object-fit: cover;        /* Corta la imagen para que se adapte sin deformarse */
+    border-radius: 0.5rem;    /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar un efecto de profundidad */
+    transition: transform 0.3s ease; /* Suaviza el efecto al hacer hover */
+}
+
+.img-cris:hover {
+    transform: scale(1.05); /* Agranda la imagen un poco al pasar el cursor */
+}

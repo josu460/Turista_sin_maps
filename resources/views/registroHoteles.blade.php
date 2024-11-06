@@ -3,8 +3,6 @@
 @section('titulo', 'Registrar Hotel')
 
 @section('contenido')
-<div class="mt-20">
-  
 @if(session('exito'))
     <script>
         Swal.fire({

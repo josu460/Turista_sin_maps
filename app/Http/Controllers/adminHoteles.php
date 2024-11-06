@@ -10,6 +10,16 @@ class adminHoteles extends Controller
     {
         return view('registroHoteles');
     }
+
+    public function ConsultarHotel() {
+
+        return view('consultarHotel');
+    }
+
+    public function inicio() {
+
+        return view('home');
+    }
     
 
     public function addHoteles(RegistrarHotel $peticion) 
