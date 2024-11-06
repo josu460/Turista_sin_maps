@@ -1,0 +1,22 @@
+/* Asegura que el carrusel ocupe todo el ancho disponible */
+#animation-carousel {
+    max-width: 100%;
+    width: 100%;
+    object-fit: cover;        /* Corta la imagen para que se adapte sin deformarse */
+}
+
+.imagen2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-item {
+    display: none; /* Oculta los elementos no activos */
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item[data-carousel-item="active"] {
+    display: block; /* Solo muestra el elemento activo */
+}
