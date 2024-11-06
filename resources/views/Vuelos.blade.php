@@ -1,4 +1,4 @@
-@extends('layouts.navbaradmi')
+@extends('layouts.navbarusuario')
 @section('titulo', ' Vuelos')
 @section('contenido')
 <link rel="stylesheet" href="{{ asset('css/vuelos.css') }}">
@@ -42,8 +42,8 @@
             <select id="tarifa" name="tarifa" class="w-full p-2.5 border border-gray-300 rounded-lg" required>
                 <option value="default" disabled selected>Seleccione una tarifa</option>
                 <option value="clasica">Clásica</option>
-                <option value="flex">Flex</option>
-                <option value="superflex">Superflex</option>
+                <option value="flex">Flexible</option>
+                <option value="superflex">Muy economica</option>
             </select>
             @if ($errors->has('tarifa'))
             <small>{{ $errors->first('tarifa') }}</small>
@@ -85,11 +85,17 @@
     @if (session('exito'))
     @session ('exito')
     <script>
-        Swal.fire({
-            title: "Todo correcto ",
-            text: " {{$value}} ",
-            icon: "success"
-        });
+Swal.fire({
+  title: 'Loading...',
+  didOpen: () => {
+    Swal.showLoading(); // Muestra el spinner de carga
+  }
+});
+
+// Para cerrar la alerta después de un tiempo simulado de "carga"
+setTimeout(() => {
+  Swal.close(); // Cierra el cuadro de diálogo de carga después de 2 segundos
+}, 1500)
     </script>
     @endsession
     @endif
