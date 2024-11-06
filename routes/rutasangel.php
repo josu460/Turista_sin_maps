@@ -19,9 +19,9 @@ Route::get('/Hoteles', function () {
 Route::post('Hoteles', [HotelController::class, 'store'])->name('Hoteles.store');
 
 // Ruta para la vista de vuelos
-Route::get('/vuelo', function () {
-    return view('vuelo');  
-})->name('vuelo');
+Route::get('/vuelosangel', function () {
+    return view('vuelosangel');  
+})->name('vuelosangel');
 
 // Ruta para guardar o actualizar los datos del vuelo
-Route::post('/vuelo', [VueloController::class, 'guardar'])->name('ruta.vuelo');
+Route::post('/vuelosangel', [VueloController::class, 'guardar'])->name('ruta.vuelosangel');
