@@ -27,12 +27,13 @@
 
 
         @csrf <!-- Token CSRF necesario para las solicitudes POST en Laravel -->
-
-      <!-- Campo de texto para el destino del hotel -->
-      <input type="text" 
-             name="campoHotel" 
-             placeholder="¿Tu próximo destino es...?" 
-             class="w-64 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+            
+        <!-- Campo de texto para el destino del hotel -->
+        <input type="text" 
+               name="campoHotel" 
+               placeholder="¿Tu próximo destino es...?"
+               value="{{ old('campoHotel') }}" 
+               class="w-1/3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">      
 
       <!-- Fechas de check-in y check-out -->
       <div id="date-range-picker" date-rangepicker class="flex items-center gap-2">
@@ -46,7 +47,7 @@
               <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
             </svg>
           </div>
-          <input id="datepicker-range-start" name="campoInicio" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-40 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Fecha de entrada">
+          <input value="{{ old('campoInicio') }}" id="datepicker-range-start" name="campoInicio" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-40 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Fecha de entrada">
         </div>
         <span class="mx-2 text-gray-500">a</span>
           <div class="relative">
@@ -55,7 +56,7 @@
                 <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
               </svg>
             </div>
-          <input id="datepicker-range-end" name="campo" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-40 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Fecha de Salida">
+          <input value="{{ old('campoFin') }}" id="datepicker-range-end" name="campoFin" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-40 pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Fecha de Salida">
         </div>
       </div>
 
@@ -118,11 +119,51 @@
       <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:ring-4 focus:ring-blue-300">
         Buscar
       </button>
-    </form>
+    </form>        
   </div>
 
-  @if ($errors->has('campoHotel'))
-    <small>{{ $errors->first('campoHotel') }}</small>
+  @if ($errors->any())
+  <div class="flex p-4 mx-3 my-3 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+    <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Asegurate de cumplir con los siguiente campos:</span>
+      <ul class="mt-1.5 list-disc list-inside">
+        @if ($errors->has('campoHotel'))          
+        <li>          
+            <span>{{$errors->first('campoHotel')}}</span>          
+        </li>
+        @endif
+        @if ($errors->has('campoInicio'))
+        <li>
+          <span>{{$errors->first('campoInicio')}}</span>
+        </li>
+        @endif
+        @if ($errors->has('campoFin'))
+        <li>
+          <span>{{$errors->first('campoFin')}}</span>
+        </li>
+        @endif
+        @if ($errors->has('campoAdultos'))
+        <li>
+          <span>{{$errors->first('campoAdultos')}}</span>
+        </li>
+        @endif
+        @if ($errors->has('campoInfantes'))
+        <li>
+          <span>{{$errors->first('campoInfantes')}}</span>
+        </li>
+        @endif
+        @if ($errors->has('campoHabitaciones'))
+        <li>
+          <span>{{$errors->first('campoHabitaciones')}}</span>
+        </li>
+        @endif
+      </ul>
+    </div>
+  </div>
   @endif
 
   <!-- Contenedor de los filtros y lista de resultados de hoteles -->
