@@ -25,6 +25,10 @@ Route:: get('/HomeAdministrador', function () {
     return view('HomeAdministrador');
 })->name('HomeAdministrador');
 
+Route:: get('/Reportes', function () {
+    return view('Reportes');
+})->name('Reportes');
+
 
 Route :: post('/enviarVuelo', [VuelosController::class, 'VuelosBuscar'])->name('VuelosBuscar');
 

@@ -70,8 +70,10 @@ class adminHoteles extends Controller
 
 
             
-            return redirect('registroHoteles');
+            return redirect('consultaHoteles');
     
         
     }
+
+    
 }

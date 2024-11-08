@@ -30,7 +30,9 @@
             </div>
 
             
-            <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center">Iniciar</button>
+            <div class="flex justify-center">
+                <a href="Home" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-lg px-6 py-3 text-center">Iniciar</a>
+            </div>
 
             
             <div class="text-center mt-4 space-y-2">
