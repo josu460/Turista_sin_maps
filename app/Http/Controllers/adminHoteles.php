@@ -31,6 +31,10 @@ class adminHoteles extends Controller
         return view('EditarUsuario');
     }
 
+    Public Function ReportesGenerales(){
+        return view('Reportes');
+    }
+
 
     public function ActualizarUsuario(EditarU $peticion)
     {
